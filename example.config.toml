@@ -1,0 +1,19 @@
+output_dir = "/opt/ooce/nginx/example"
+
+[[players]]
+name = "Mike"
+uuid = "08ec2abe-0c4b-6a51-fb22-c5913fc0fc41"
+avatar = "mike-avatar.jpg"
+
+[[players]]
+name = "Dan"
+uuid = "994216ae-3b7c-6d16-df8d-c61017b0608e"
+avatar = "dan-avatar.jpg"
+
+# Note ending the template name in ".html" causes the rending to preform html escaping
+[template]
+name = "index.html"
+path = "site/index.template"
+mode = 0o644
+
+
