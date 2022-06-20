@@ -79,7 +79,18 @@ fn get_player_stats(player: &str) -> Result<Stats> {
 }
 
 fn main() -> Result<()> {
-    let config = Config::from_file("config.toml")?;
+    let args: Vec<String> = std::env::args().collect();
+    let program = &args[0].clone();
+    let brief = format!("Usage: {} [options] -c CONFIG", program);
+
+    let mut opts = getopts::Options::new();
+    opts.reqopt("c", "", "config file", "CONFIG");
+    let matches = match opts.parse(&args[1..]) {
+        Ok(m) => m,
+        Err(e) => return Err(anyhow::anyhow!("{}\n{}", e, opts.usage(&brief))),
+    };
+
+    let config = Config::from_file(matches.opt_str("c").unwrap())?;
     let mut players = Vec::with_capacity(config.players.len());
 
     // Get stats for all of the competing players
