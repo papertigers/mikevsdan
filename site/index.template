@@ -10,9 +10,18 @@
 
 body {
   background-color: rgb(35,39,42);
+  text-align: center;
 }
+
+.main-container {
+  max-width: 1200px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
 .card {
-  margin: auto;
+  display: inline-block;
+  margin: 5px;
   box-shadow: 0 8px 8px 8px rgba(44,47,51,0.2);
   transition: 0.3s;
   max-width: 500px;
@@ -42,6 +51,7 @@ img {
 .top {
   text-align: center;
   color: white;
+  margin-bottom: 10px;
 }
 
 a.schedule:link, a.schedule:visited {
@@ -65,26 +75,25 @@ a.schedule:hover, a.schedule:active {
 <h1><u>{{ players[0].name }}</u> is the best player!</h1>
 <a href="schedule.html" class="schedule">schedule</a>
 </div>
-<br>
-<br>
-{% for player in players %}
-<div class="card">
-<img src="{{ player.avatar }}" alt="Avatar" style="width:100%">
-  <div class="container">
-    <div class="container_name">
-    <h2><b>{{ player.name }}</b></h2>
+
+<div class="main-container">
+  {% for player in players %}
+  <div class="card">
+  <img src="{{ player.avatar }}" alt="Avatar" style="width:100%">
+    <div class="container">
+      <div class="container_name">
+      <h2><b>{{ player.name }}</b></h2>
+      </div>
+      <p><strong>Goals: </strong>{{ player.stats.goals }}</p>
+      <p><strong>Assists: </strong>{{ player.stats.assists }}</p>
+      <p><strong>Penalty Minutes: </strong>{{ player.stats.penalty_minutes }}</p>
+      <p><strong>Hat Tricks: </strong>{{ player.stats.hat_tricks }}</p>
+      <p><strong>Points: </strong>{{ player.stats.points }}</p>
     </div>
-    <p><strong>Goals: </strong>{{ player.stats.goals }}</p>
-    <p><strong>Assists: </strong>{{ player.stats.assists }}</p>
-    <p><strong>Penalty Minutes: </strong>{{ player.stats.penalty_minutes }}</p>
-    <p><strong>Hat Tricks: </strong>{{ player.stats.hat_tricks }}</p>
-    <p><strong>Points: </strong>{{ player.stats.points }}</p>
   </div>
-</div>
 {% if not loop.last %}
-<br>
 {% endif %}
 {% endfor %}
-<br>
+</div>
 </body>
 </html>
